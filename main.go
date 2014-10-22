@@ -18,6 +18,7 @@ import (
 	"runtime/pprof"
 	"time"
 
+	"github.com/couchbase/indexing/secondary/common"
 	"github.com/couchbaselabs/clog"
 	"github.com/couchbaselabs/tuqtng/ast"
 	"github.com/couchbaselabs/tuqtng/network"
@@ -63,6 +64,7 @@ func main() {
 	}
 
 	go dumpOnSignalForPlatform()
+	go common.ExitOnStdinClose()
 
 	// create a QueryChannel
 	queryChannel := make(network.QueryChannel)
